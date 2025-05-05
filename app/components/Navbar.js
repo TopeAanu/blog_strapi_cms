@@ -3,20 +3,32 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white dark:bg-gray-800 shadow-md">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <Link href="/" className="text-xl font-bold">
-            My Blog
+          <Link
+            href="/"
+            className="text-2xl font-mono font-bold text-gray-800 dark:text-white"
+          >
+            Strapi Blog
           </Link>
           <div className="space-x-4">
-            <Link href="/" className="hover:text-blue-600">
-              Home
+            <Link
+              href="/"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            >
+              Blog
             </Link>
-            <Link href="/about" className="hover:text-blue-600">
+            <Link
+              href="/about"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            >
               About
             </Link>
-            <Link href="/contact" className="hover:text-blue-600">
+            <Link
+              href="/contact"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            >
               Contact
             </Link>
           </div>

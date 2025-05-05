@@ -1,5 +1,6 @@
-// app/page.js - Fixed for the actual data structure
+// app/page.js
 import Link from "next/link";
+import Image from "next/image"; // Add this import
 import { getAllPosts } from "./lib/strapi";
 
 export default async function Home() {
@@ -22,19 +23,7 @@ export default async function Home() {
 
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">My Blog</h1>
-
-      {/* Show debugging information directly on the page */}
-      <div className="bg-yellow-100 p-4 mb-6 rounded">
-        <h2 className="font-bold">Debug Info:</h2>
-        <p>
-          Strapi URL:{" "}
-          {process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}
-        </p>
-        <p>
-          Posts found: {Array.isArray(posts) ? posts.length : "Not an array"}
-        </p>
-      </div>
+      {/* <h1 className="text-3xl font-bold mb-8">Strapi's Headless CMS</h1> */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Array.isArray(posts) && posts.length > 0 ? (
@@ -57,11 +46,42 @@ export default async function Home() {
               );
             }
 
+            // Get featured image URL using same logic as your blog/[slug]/page.js
+            let imageUrl = null;
+            if (postData.featuredImage) {
+              if (postData.featuredImage.data) {
+                // Strapi v4 structure
+                imageUrl = postData.featuredImage.data.attributes.url;
+              } else if (postData.featuredImage.url) {
+                // Direct URL property
+                imageUrl = postData.featuredImage.url;
+              }
+
+              // Add domain if it's a relative URL
+              if (imageUrl && !imageUrl.startsWith("http")) {
+                imageUrl = `${
+                  process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"
+                }${imageUrl}`;
+              }
+            }
+
             return (
               <div
                 key={post.id}
                 className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
               >
+                {/* Add image section before the text content */}
+                {imageUrl && (
+                  <div className="relative w-full h-48">
+                    <Image
+                      src={imageUrl}
+                      alt={postData.title || "Blog post image"}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+                )}
                 <div className="p-4">
                   <h2 className="text-xl font-semibold mb-2">
                     {postData.title || "Untitled"}
