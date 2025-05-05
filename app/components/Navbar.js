@@ -31,6 +31,24 @@ export default function Navbar() {
             >
               Contact
             </Link>
+            <Link
+              href="#"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            >
+              Twitter
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            >
+              GitHub
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            >
+              LinkedIn
+            </Link>
           </div>
         </div>
       </div>
