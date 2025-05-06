@@ -12,13 +12,14 @@ export default function About() {
       <p className="mb-4">
         Strapi supports both REST and GraphQL, making it easy to integrate with
         frontend frameworks like React, Vue, or Next.js. One of its key
-        strengths is extensibility—you can define custom content types, roles,
-        and permissions.
+        strengths is extensibility&mdash;you can define custom content types,
+        roles, and permissions.
       </p>
       <p>
         It also stores data in popular databases like MongoDB, PostgreSQL, or
-        MySQL. Whether you're building a blog, e-commerce platform, or corporate
-        site, Strapi empowers developers to manage content with full control.
+        MySQL. Whether you&apos;re building a blog, e-commerce platform, or
+        corporate site, Strapi empowers developers to manage content with full
+        control.
       </p>
     </div>
   );
