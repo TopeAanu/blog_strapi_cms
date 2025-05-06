@@ -1,6 +1,6 @@
 // app/page.js
 import Link from "next/link";
-import Image from "next/image"; // Add this import
+import Image from "next/image";
 import { getAllPosts } from "./lib/strapi";
 
 export default async function Home() {
@@ -25,7 +25,7 @@ export default async function Home() {
     <main className="container mx-auto px-4 py-8">
       {/* <h1 className="text-3xl font-bold mb-8">Strapi's Headless CMS</h1> */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {Array.isArray(posts) && posts.length > 0 ? (
           posts.map((post) => {
             // First, check if we have direct properties OR attributes structure
@@ -68,7 +68,7 @@ export default async function Home() {
             return (
               <div
                 key={post.id}
-                className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex flex-col h-full"
               >
                 {/* Add image section before the text content */}
                 {imageUrl && (
@@ -82,14 +82,14 @@ export default async function Home() {
                     />
                   </div>
                 )}
-                <div className="p-4">
+                <div className="p-4 flex flex-col flex-grow">
                   <h2 className="text-xl font-semibold mb-2">
                     {postData.title || "Untitled"}
                   </h2>
                   <p className="text-gray-600 mb-4">
                     {postData.description || "No description"}
                   </p>
-                  <div className="flex justify-between items-center">
+                  <div className="mt-auto pt-4 flex justify-between items-center">
                     <span className="text-sm text-gray-500">
                       {postData.publishedAt
                         ? new Date(postData.publishedAt).toLocaleDateString()
@@ -98,7 +98,7 @@ export default async function Home() {
                     {postData.slug && (
                       <Link
                         href={`/blog/${postData.slug}`}
-                        className="text-blue-600 hover:text-blue-800 font-medium"
+                        className="text-purple-600 hover:text-purple-800 font-medium"
                       >
                         Read more →
                       </Link>
