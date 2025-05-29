@@ -8,6 +8,13 @@ const nextConfig = {
         port: "1337",
         pathname: "/uploads/**",
       },
+      // Add ngrok domain for Strapi
+      {
+        protocol: "https",
+        hostname: "f184-102-89-33-149.ngrok-free.app",
+        port: "",
+        pathname: "/uploads/**",
+      },
       // If you have a production Strapi server, add it here too
       // {
       //   protocol: 'https',
